@@ -6,9 +6,12 @@ import { useLocation } from 'react-router-dom';
 
 import { Template } from 'components/Template';
 
-import { Input } from './components/Input';
-import { Metric } from './components/Metric';
-import { Generate } from './components/Generate';
+import {
+  GenerateTokenModal,
+  ExtraInfoModal,
+  Input,
+  Metric
+} from './components';
 
 import { TokenColorsEnum } from './enum';
 
@@ -77,8 +80,10 @@ export const Authentication = () => {
     environment || getEnvironmentForChainId(network.chainId)
   );
 
-  const [show, setShow] = useState(false);
+  const [showGenerateTokenModal, setShowGenerateTokenModal] = useState(false);
+  const [showExtraInfoModal, setShowExtraInfoModal] = useState(false);
   const [metrics, setMetrics] = useState<MetricType>(defaultMetrics[chain]);
+  const [extraInfo, setExtraInfo] = useState(metrics?.extraInfo);
 
   const metricItems: MetricItemType[] = [
     {
@@ -142,10 +147,19 @@ export const Authentication = () => {
   /*
    * Return the rendered component.
    */
-
   return (
     <Template>
-      <Generate show={show} setShow={setShow} chain={chain} />
+      <ExtraInfoModal
+        show={showExtraInfoModal}
+        setShow={setShowExtraInfoModal}
+        setExtraInfo={setExtraInfo}
+      />
+      <GenerateTokenModal
+        show={showGenerateTokenModal}
+        setShow={setShowGenerateTokenModal}
+        chain={chain}
+        extraInfo={extraInfo}
+      />
 
       <div className={styles.authentication}>
         <div className={styles.left}>
@@ -153,7 +167,8 @@ export const Authentication = () => {
 
           <Input
             setMetrics={setMetrics}
-            setShow={setShow}
+            setShowExtraInfoModal={setShowExtraInfoModal}
+            setShowGenerateTokenModal={setShowGenerateTokenModal}
             setChain={setChain}
             chain={chain}
           />

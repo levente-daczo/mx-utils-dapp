@@ -17,7 +17,13 @@ import { ActionTypeEnum } from 'context/reducer';
  */
 
 export const Input = memo((props: InputPropsType) => {
-  const { setMetrics, setShow, setChain, chain } = props;
+  const {
+    setMetrics,
+    setShowExtraInfoModal,
+    setShowGenerateTokenModal,
+    setChain,
+    chain
+  } = props;
 
   const dispatch = useDispatch();
 
@@ -37,12 +43,21 @@ export const Input = memo((props: InputPropsType) => {
   }[chain];
 
   const handleGenerateClick = () => {
-    setShow(true);
+    setShowGenerateTokenModal(true);
 
     dispatch({
       type: ActionTypeEnum.switchDappEnvironment,
       dappEnvironment: chain
     });
+  };
+
+  const handleExtraInfoClick = () => {
+    setShowExtraInfoModal(true);
+
+    // dispatch({
+    //   type: ActionTypeEnum.switchDappEnvironment,
+    //   dappEnvironment: chain
+    // });
   };
 
   /*
@@ -64,6 +79,12 @@ export const Input = memo((props: InputPropsType) => {
             <span>Paste a token here</span>
 
             <div className={styles.wrapper}>
+              <button
+                onClick={handleExtraInfoClick}
+                className={styles.generate}
+              >
+                Extra Info
+              </button>
               <button onClick={handleGenerateClick} className={styles.generate}>
                 Generate
               </button>

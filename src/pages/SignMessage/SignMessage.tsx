@@ -8,7 +8,7 @@ import { useGetSignMessageInfoStatus } from '@multiversx/sdk-dapp/hooks/signMess
 import { logout } from '@multiversx/sdk-dapp/utils/logout';
 
 import styles from './styles.module.scss';
-import { Generate } from 'pages/Authentication/components/Generate';
+import { GenerateTokenModal } from 'pages/Authentication/components/GenerateTokenModal';
 import {
   SignMessageForm,
   VerifySignatureForm,
@@ -86,7 +86,7 @@ export const SignMessage = () => {
   return (
     <>
       <Template>
-        <Generate
+        <GenerateTokenModal
           chain={EnvironmentsEnum.mainnet}
           show={showProvidersModal}
           setShow={setShowProvidersModal}

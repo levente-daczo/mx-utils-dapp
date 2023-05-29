@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from 'react';
 import {
   ExtensionLoginButton,
   LedgerLoginButton,
+  UsdValue,
   WalletConnectLoginButton,
   WebWalletLoginButton
 } from '@multiversx/sdk-dapp/UI';
@@ -13,7 +14,7 @@ import { Modal } from 'react-bootstrap';
 
 import { CloseIcon } from 'assets/img/CloseIcon';
 
-import type { GeneratePropsType } from './types';
+import { GenerateTokenModalProps } from './types';
 
 import styles from './styles.module.scss';
 import { useGetIsLoggedIn } from '@multiversx/sdk-dapp/hooks';
@@ -24,8 +25,8 @@ enum LoginContainersTypesEnum {
   none = 'none'
 }
 
-export const Generate = (props: GeneratePropsType) => {
-  const { chain, show, setShow, callbackAfterLogin } = props;
+export const GenerateTokenModal = (props: GenerateTokenModalProps) => {
+  const { chain, show, setShow, callbackAfterLogin, extraInfo } = props;
 
   const isLoggedIn = useGetIsLoggedIn();
   const { search, pathname } = useLocation();
@@ -108,6 +109,7 @@ export const Generate = (props: GeneratePropsType) => {
     >
       <div className={styles.unlock}>
         <div className={styles.heading}>
+          <UsdValue amount='1000' usd={10} />
           <div className={styles.title}>
             {titles[openedLoginContainerType] ||
               titles[LoginContainersTypesEnum.none]}
@@ -140,6 +142,7 @@ export const Generate = (props: GeneratePropsType) => {
                   className={styles.button}
                   wrapContentInsideModal={false}
                   hideButtonWhenModalOpens={true}
+                  token=''
                   nativeAuth={{ apiAddress, expirySeconds: 7200 }}
                   {...button}
                 >
