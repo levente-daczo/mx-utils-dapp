@@ -109,7 +109,6 @@ export const GenerateTokenModal = (props: GenerateTokenModalProps) => {
     >
       <div className={styles.unlock}>
         <div className={styles.heading}>
-          <UsdValue amount='1000' usd={10} />
           <div className={styles.title}>
             {titles[openedLoginContainerType] ||
               titles[LoginContainersTypesEnum.none]}
@@ -142,8 +141,7 @@ export const GenerateTokenModal = (props: GenerateTokenModalProps) => {
                   className={styles.button}
                   wrapContentInsideModal={false}
                   hideButtonWhenModalOpens={true}
-                  token=''
-                  nativeAuth={{ apiAddress, expirySeconds: 7200 }}
+                  nativeAuth={{ apiAddress, expirySeconds: 7200, extraInfo }}
                   {...button}
                 >
                   <span className={styles.name}>{button.name}</span>

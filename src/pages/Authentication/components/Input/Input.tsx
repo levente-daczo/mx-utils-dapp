@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Formik, Form, FormikProps } from 'formik';
 import { EnvironmentsEnum } from '@multiversx/sdk-dapp/types';
 
@@ -11,6 +11,8 @@ import type { FormValuesType, InputPropsType } from './types';
 import styles from './styles.module.scss';
 import { useDispatch } from 'context';
 import { ActionTypeEnum } from 'context/reducer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons';
 
 /*
  * Handle the component declaration.
@@ -22,6 +24,7 @@ export const Input = memo((props: InputPropsType) => {
     setShowExtraInfoModal,
     setShowGenerateTokenModal,
     setChain,
+    extraInfo,
     chain
   } = props;
 
@@ -53,12 +56,11 @@ export const Input = memo((props: InputPropsType) => {
 
   const handleExtraInfoClick = () => {
     setShowExtraInfoModal(true);
-
-    // dispatch({
-    //   type: ActionTypeEnum.switchDappEnvironment,
-    //   dappEnvironment: chain
-    // });
   };
+
+  const isExtraInfoSet = Object.keys(extraInfo).length > 1;
+
+  console.log(Object.keys(extraInfo));
 
   /*
    * Return the rendered component.
@@ -83,7 +85,11 @@ export const Input = memo((props: InputPropsType) => {
                 onClick={handleExtraInfoClick}
                 className={styles.generate}
               >
-                Extra Info
+                <span>Extra Info</span>
+                <FontAwesomeIcon
+                  icon={isExtraInfoSet ? faToggleOn : faToggleOff}
+                  size='lg'
+                />
               </button>
               <button onClick={handleGenerateClick} className={styles.generate}>
                 Generate

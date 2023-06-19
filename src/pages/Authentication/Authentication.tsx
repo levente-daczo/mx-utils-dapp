@@ -85,6 +85,8 @@ export const Authentication = () => {
   const [metrics, setMetrics] = useState<MetricType>(defaultMetrics[chain]);
   const [extraInfo, setExtraInfo] = useState(metrics?.extraInfo);
 
+  console.log('extraInfo: ', extraInfo);
+
   const metricItems: MetricItemType[] = [
     {
       name: 'Address',
@@ -171,6 +173,7 @@ export const Authentication = () => {
             setShowGenerateTokenModal={setShowGenerateTokenModal}
             setChain={setChain}
             chain={chain}
+            extraInfo={extraInfo}
           />
         </div>
 

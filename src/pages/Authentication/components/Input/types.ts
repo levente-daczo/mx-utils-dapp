@@ -8,10 +8,15 @@ export interface FormValuesType {
   message?: string;
 }
 
+export interface ExtraInfoType {
+  [key: string]: string;
+}
+
 export interface InputPropsType {
   setMetrics: Dispatch<SetStateAction<MetricType>>;
   setChain: Dispatch<SetStateAction<EnvironmentsEnum>>;
   setShowGenerateTokenModal: Dispatch<SetStateAction<boolean>>;
   setShowExtraInfoModal: Dispatch<SetStateAction<boolean>>;
+  extraInfo: ExtraInfoType;
   chain: EnvironmentsEnum;
 }

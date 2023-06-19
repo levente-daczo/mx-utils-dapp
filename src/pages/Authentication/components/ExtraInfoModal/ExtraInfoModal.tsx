@@ -8,6 +8,7 @@ import { CloseIcon } from 'assets/img/CloseIcon';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMultiply } from '@fortawesome/free-solid-svg-icons';
+import { ExtraInfoType } from 'pages/Authentication/components/Input/types';
 
 export const ExtraInfoModal = ({
   show,
@@ -52,7 +53,7 @@ export const ExtraInfoModal = ({
       };
     }, {});
 
-    setExtraInfo((prevExtraInfo: any) => ({
+    setExtraInfo((prevExtraInfo: ExtraInfoType) => ({
       ...prevExtraInfo,
       ...extraInfoData
     }));
